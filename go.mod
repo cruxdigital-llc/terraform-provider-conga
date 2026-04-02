@@ -2,9 +2,6 @@ module github.com/cruxdigital-llc/terraform-provider-conga
 
 go 1.25.0
 
-// TODO: Replace with tagged version after CongaLine restructure is tagged
-replace github.com/cruxdigital-llc/conga-line => ../congaline
-
 require (
 	github.com/cruxdigital-llc/conga-line v0.0.23
 	github.com/hashicorp/terraform-plugin-framework v1.19.0
