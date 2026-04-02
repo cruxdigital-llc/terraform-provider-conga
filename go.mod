@@ -2,7 +2,7 @@ module github.com/cruxdigital-llc/terraform-provider-conga
 
 go 1.25.0
 
-// Remove this replace directive once the CongaLine pkg/ rename is published
+// TODO: Replace with tagged version after CongaLine PR merges (cli/v0.X.X)
 replace github.com/cruxdigital-llc/conga-line/cli => ../congaline/cli
 
 require (
