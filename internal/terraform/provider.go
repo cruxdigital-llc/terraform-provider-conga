@@ -121,7 +121,7 @@ func (p *congaProvider) Configure(ctx context.Context, req provider.ConfigureReq
 	}
 
 	cfg := &congaprovider.Config{
-		Provider: providerType,
+		Provider: congaprovider.ProviderName(providerType),
 	}
 	if !config.DataDir.IsNull() {
 		cfg.DataDir = config.DataDir.ValueString()
@@ -145,7 +145,7 @@ func (p *congaProvider) Configure(ctx context.Context, req provider.ConfigureReq
 		cfg.Profile = config.Profile.ValueString()
 	}
 
-	prov, err := congaprovider.Get(providerType, cfg)
+	prov, err := congaprovider.Get(congaprovider.ProviderName(providerType), cfg)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Failed to initialize provider",

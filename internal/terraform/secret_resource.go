@@ -102,6 +102,14 @@ func (r *secretResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
+	// Refresh agent so the container picks up the new secret in its env file.
+	if err := r.prov.RefreshAgent(ctx, agent); err != nil {
+		resp.Diagnostics.AddWarning(
+			"Secret saved but agent refresh failed",
+			fmt.Sprintf("The secret was stored but the agent could not be refreshed: %v. Run `conga refresh --agent %s` manually.", err, agent),
+		)
+	}
+
 	plan.ID = types.StringValue(agent + "/" + name)
 	resp.Diagnostics.Append(resp.State.Set(ctx, plan)...)
 }
@@ -147,12 +155,21 @@ func (r *secretResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	if err := r.prov.SetSecret(ctx, plan.Agent.ValueString(), plan.Name.ValueString(), plan.Value.ValueString()); err != nil {
+	agent := plan.Agent.ValueString()
+	if err := r.prov.SetSecret(ctx, agent, plan.Name.ValueString(), plan.Value.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Failed to update secret", err.Error())
 		return
 	}
 
-	plan.ID = types.StringValue(plan.Agent.ValueString() + "/" + plan.Name.ValueString())
+	// Refresh agent so the container picks up the updated secret in its env file.
+	if err := r.prov.RefreshAgent(ctx, agent); err != nil {
+		resp.Diagnostics.AddWarning(
+			"Secret updated but agent refresh failed",
+			fmt.Sprintf("The secret was stored but the agent could not be refreshed: %v. Run `conga refresh --agent %s` manually.", err, agent),
+		)
+	}
+
+	plan.ID = types.StringValue(agent + "/" + plan.Name.ValueString())
 	resp.Diagnostics.Append(resp.State.Set(ctx, plan)...)
 }
 
@@ -163,8 +180,18 @@ func (r *secretResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	if err := r.prov.DeleteSecret(ctx, state.Agent.ValueString(), state.Name.ValueString()); err != nil {
+	agent := state.Agent.ValueString()
+	if err := r.prov.DeleteSecret(ctx, agent, state.Name.ValueString()); err != nil {
 		resp.Diagnostics.AddError("Failed to delete secret", err.Error())
+		return
+	}
+
+	// Refresh agent so the container picks up the removal in its env file.
+	if err := r.prov.RefreshAgent(ctx, agent); err != nil {
+		resp.Diagnostics.AddWarning(
+			"Secret deleted but agent refresh failed",
+			fmt.Sprintf("The secret was removed but the agent could not be refreshed: %v. Run `conga refresh --agent %s` manually.", err, agent),
+		)
 	}
 }
 
