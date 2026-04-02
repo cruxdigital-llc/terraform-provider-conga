@@ -2,11 +2,11 @@ module github.com/cruxdigital-llc/terraform-provider-conga
 
 go 1.25.0
 
-// TODO: Replace with tagged version after CongaLine PR merges (cli/v0.X.X)
-replace github.com/cruxdigital-llc/conga-line/cli => ../congaline/cli
+// TODO: Replace with tagged version after CongaLine restructure is tagged
+replace github.com/cruxdigital-llc/conga-line => ../congaline
 
 require (
-	github.com/cruxdigital-llc/conga-line/cli v0.0.0-00010101000000-000000000000
+	github.com/cruxdigital-llc/conga-line v0.0.0-00010101000000-000000000000
 	github.com/hashicorp/terraform-plugin-framework v1.19.0
 	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0
 	github.com/hashicorp/terraform-plugin-go v0.31.0

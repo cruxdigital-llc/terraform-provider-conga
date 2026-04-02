@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	"github.com/cruxdigital-llc/conga-line/cli/pkg/policy"
+	"github.com/cruxdigital-llc/conga-line/pkg/policy"
 )
 
 var _ datasource.DataSource = &policyDataSource{}

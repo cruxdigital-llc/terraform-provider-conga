@@ -12,15 +12,15 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	congaprovider "github.com/cruxdigital-llc/conga-line/cli/pkg/provider"
+	congaprovider "github.com/cruxdigital-llc/conga-line/pkg/provider"
 
 	// Register all provider implementations so provider.Get() can find them.
-	_ "github.com/cruxdigital-llc/conga-line/cli/pkg/provider/awsprovider"
-	_ "github.com/cruxdigital-llc/conga-line/cli/pkg/provider/localprovider"
-	_ "github.com/cruxdigital-llc/conga-line/cli/pkg/provider/remoteprovider"
+	_ "github.com/cruxdigital-llc/conga-line/pkg/provider/awsprovider"
+	_ "github.com/cruxdigital-llc/conga-line/pkg/provider/localprovider"
+	_ "github.com/cruxdigital-llc/conga-line/pkg/provider/remoteprovider"
 
 	// Register all channel implementations so AddChannel() can find them.
-	_ "github.com/cruxdigital-llc/conga-line/cli/pkg/channels/slack"
+	_ "github.com/cruxdigital-llc/conga-line/pkg/channels/slack"
 )
 
 var _ provider.Provider = &congaProvider{}

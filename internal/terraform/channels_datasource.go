@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	congaprovider "github.com/cruxdigital-llc/conga-line/cli/pkg/provider"
+	congaprovider "github.com/cruxdigital-llc/conga-line/pkg/provider"
 )
 
 var _ datasource.DataSource = &channelsDataSource{}

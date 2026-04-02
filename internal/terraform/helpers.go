@@ -8,7 +8,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 
-	congaprovider "github.com/cruxdigital-llc/conga-line/cli/pkg/provider"
+	congaprovider "github.com/cruxdigital-llc/conga-line/pkg/provider"
 )
 
 // agentNameRegex matches valid agent names: lowercase alphanumeric with hyphens.

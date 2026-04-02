@@ -3,7 +3,7 @@ package terraform
 import (
 	"context"
 
-	"github.com/cruxdigital-llc/conga-line/cli/pkg/common"
+	"github.com/cruxdigital-llc/conga-line/pkg/common"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -14,7 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	congaprovider "github.com/cruxdigital-llc/conga-line/cli/pkg/provider"
+	congaprovider "github.com/cruxdigital-llc/conga-line/pkg/provider"
 )
 
 var (
