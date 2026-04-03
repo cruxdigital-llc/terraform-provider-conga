@@ -86,7 +86,7 @@ func (r *environmentResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	plan.ID = types.StringValue(r.prov.Name())
+	plan.ID = types.StringValue("environment")
 	resp.Diagnostics.Append(resp.State.Set(ctx, plan)...)
 }
 
@@ -132,7 +132,7 @@ func (r *environmentResource) Update(ctx context.Context, req resource.UpdateReq
 		return
 	}
 
-	plan.ID = types.StringValue(r.prov.Name())
+	plan.ID = types.StringValue("environment")
 	resp.Diagnostics.Append(resp.State.Set(ctx, plan)...)
 }
 
