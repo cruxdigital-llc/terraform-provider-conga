@@ -3,7 +3,7 @@ module github.com/cruxdigital-llc/terraform-provider-conga
 go 1.25.0
 
 require (
-	github.com/cruxdigital-llc/conga-line v0.0.24
+	github.com/cruxdigital-llc/conga-line v0.0.25
 	github.com/hashicorp/terraform-plugin-framework v1.19.0
 	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0
 	github.com/hashicorp/terraform-plugin-go v0.31.0
